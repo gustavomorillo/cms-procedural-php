@@ -1,14 +1,15 @@
 <?php 
 
 
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$url = getenv('JAWSDB_URL');
+$dbparts = parse_url($url);
 
-$server = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$db = substr($url["path"], 1);
+$hostname = $dbparts['host'];
+$username = $dbparts['user'];
+$password = $dbparts['pass'];
+$database = ltrim($dbparts['path'],'/');
 
-$conn = mysqli_connect($server, $username, $password, $db);
+$conn = mysqli_connect($hostname, $username, $password, $database);
 
 
 if($conn) {
@@ -16,6 +17,15 @@ if($conn) {
 } else {
 	echo "Error";
 }
+
+
+$url = getenv('JAWSDB_URL');
+$dbparts = parse_url($url);
+
+$hostname = $dbparts['host'];
+$username = $dbparts['user'];
+$password = $dbparts['pass'];
+$database = ltrim($dbparts['path'],'/');
 
 
 
