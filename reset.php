@@ -41,7 +41,7 @@ echo $username;
 
                 if(mysqli_stmt_affected_rows($stmt) >= 1){
 
-                  redirect('/cms/login.php');
+                  redirect('/login.php');
 
 
                 }

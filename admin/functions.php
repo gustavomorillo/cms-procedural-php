@@ -311,15 +311,15 @@ function login_user($username, $password){
           $_SESSION['user_role'] = $db_user_role;
 
 
-        header("Location: /cms/admin");
+        header("Location: /admin");
     } else {
-        header("Location: /cms/login.php");
+        header("Location: /login.php");
         
     }
 }
 
 function login_user2($username, $password){
-
+ 
     global $connection;
 
 
@@ -350,9 +350,9 @@ function login_user2($username, $password){
           $_SESSION['user_role'] = $db_user_role;
 
 
-        header("Location: /cms/admin");
+        header("Location: /admin");
     } else {
-        header("Location: /cms/");
+        header("Location: /");
         
     }
 }

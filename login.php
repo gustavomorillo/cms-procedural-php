@@ -10,7 +10,7 @@
 
 <?php 
 
-checkIfUserIsLoggedInAndRedirect("/cms/admin");
+checkIfUserIsLoggedInAndRedirect("/admin");
 
 
 

@@ -41,7 +41,7 @@ if(ifItIsMethod('post')){
 
                         <div class="well">
                     <h4><?php echo $_SESSION['username']; ?></h4>
-                    <form action="/cms/includes/login.php" method="post">
+                    <form action="/includes/login.php" method="post">
                     <div class="form-group">
             
                         

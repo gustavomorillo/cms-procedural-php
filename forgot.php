@@ -59,7 +59,7 @@ if(ifItIsMethod('post')){
 
                     $mail->Body = '<p>Please click to reset your password
 
-                    <a href="http://localhost:80/cms/reset.php?email='.$email.'&token='.$token.' ">http://localhost:80/cms/reset.php?email='.$email.'&token='.$token.'</a>
+                    <a href="http://localhost:80/reset.php?email='.$email.'&token='.$token.' ">http://localhost:80/reset.php?email='.$email.'&token='.$token.'</a>
 
 
 

@@ -143,7 +143,7 @@ mysqli_query($connection, "DELETE FROM likes WHERE post_id = $post_id AND user_i
                     </p>
                     <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date; ?></p>
                     <hr>
-                    <img class="img-responsive" src="/cms/images/<?php echo $post_image; ?>" alt="">
+                    <img class="img-responsive" src="/images/<?php echo $post_image; ?>" alt="">
                     <hr>
                     <p><?php echo $post_content; ?></p>
 
@@ -167,7 +167,7 @@ mysqli_query($connection, "DELETE FROM likes WHERE post_id = $post_id AND user_i
                     <? } else {  ?>
 
                     <div class="row">
-                        <p class="pull-right">You need to log in to Like post: <a href="/cms/login.php">Log in</a></p>
+                        <p class="pull-right">You need to log in to Like post: <a href="/login.php">Log in</a></p>
                     </div> 
                     <?php } ?>
                     
@@ -290,7 +290,7 @@ mysqli_query($connection, "DELETE FROM likes WHERE post_id = $post_id AND user_i
                     
                     $('.like').click(function(){
                     $.ajax({
-                    url:"/cms/post.php?p_id=<?php echo $post_id; ?>",
+                    url:"/post.php?p_id=<?php echo $post_id; ?>",
                     type:'post',
                     data: {
                         'liked':1,
@@ -304,7 +304,7 @@ mysqli_query($connection, "DELETE FROM likes WHERE post_id = $post_id AND user_i
 
                     $('.unlike').click(function(){
                     $.ajax({
-                    url:"/cms/post.php?p_id=<?php echo $post_id; ?>",
+                    url:"/post.php?p_id=<?php echo $post_id; ?>",
                     type:'post',
                     data: {
                         'unliked':1,

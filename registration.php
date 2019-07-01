@@ -78,7 +78,7 @@
                     <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
                         <div class="form-group">
                             <label for="username" class="sr-only">username</label>
-                            <input type="text" name="username" id="username" class="form-control" placeholder="Enter Desired Username" autocomplete="on" value="<?php echo isset($username) ? $username : ''?>">
+                            <input type="text" name="username" id="username" class="form-control" placeholder="Enter Desired Username" autocomplete="on" >
                         </div>
                         <p><?php echo isset($error['username']) ? $error['username'] : ''; ?></p>
 
