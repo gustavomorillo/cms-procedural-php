@@ -20,7 +20,7 @@ if(ifItIsMethod('post')){
 			echo "<h1>Empty field</h1>";
 		}
 		elseif(isset($_POST['username']) && isset($_POST['password'])){
-			login_user($_POST['username'], $_POST['password']);
+			echo "<h1>Empty fieldx</h1>";
 		}
 } 
 
