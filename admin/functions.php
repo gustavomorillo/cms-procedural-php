@@ -76,7 +76,7 @@ function checkIfUserIsLoggedInAndRedirect($redirectLocation=null){
 function confirm($result) {
 	global $connection;
 	if (!$result) {
-	die("Query Failed" . mysqli_error($connection));
+	die("Query Failedx" . mysqli_error($connection));
 
 }
 }

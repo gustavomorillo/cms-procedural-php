@@ -14,12 +14,15 @@ checkIfUserIsLoggedInAndRedirect("/cms/admin");
 
 
 
-if (empty($_POST['username'])){
-	echo "<h1>Empty field</h1>";
-}
-elseif(isset($_POST['username']) && isset($_POST['password'])){
-	echo "<h1>Empty fieldx</h1>";
-}
+if(ifItIsMethod('post')){
+
+		if (empty($_POST['username'])){
+			echo "<h1>Empty field</h1>";
+		}
+		elseif(isset($_POST['username']) && isset($_POST['password'])){
+			login_user($_POST['username'], $_POST['password']);
+		}
+} 
 
 ?>
 
