@@ -1,0 +1,279 @@
+vprn 10084 customer 1 create
+            description "LTE_SGI"
+            vrf-import "Import_LTE-SGI_3G-BILLING"
+            router-id 10.19.11.114
+            autonomous-system 6306
+            route-distinguisher 6306:10084
+            auto-bind mpls
+            vrf-target target:6306:10084
+            interface "PED77COL04_LAG11-HP_BUNDLE2-NAV" create
+                address 10.53.179.29/30
+                bfd 300 receive 300 multiplier 3
+                sap lag-11:517 create
+                exit
+            exit
+            ospf
+                vpn-tag 6306
+                timers
+                    lsa-arrival 100
+                exit
+                export "Export-Default_LTE-SGI"
+                ignore-dn-bit
+                area 0.0.0.72
+                    interface "PED77COL04_LAG11-HP_BUNDLE2-NAV"
+                        interface-type point-to-point
+                        hello-interval 1
+                        dead-interval 4
+                        bfd-enable 
+                        no shutdown
+                    exit
+                exit
+            exit
+            service-name "LTE-SGI"
+            no shutdown
+        exit
+
+        policy-statement "Import_LTE-SGI_3G-BILLING"
+                entry 10
+                    from
+                        community "LTE-SGI"
+                    exit
+                    action accept
+                    exit
+                exit
+                entry 20
+                    from
+                        community "3G-BILLING"
+                    exit
+                    action accept
+                    exit
+                exit                  
+            exit
+
+
+
+vprn 10098 customer 1 create
+            description "LTE-SGI-Servicios"
+            vrf-import "Import_LTE-SGI-Serv_GPRS-GI_Int"
+            router-id 10.19.11.114
+            autonomous-system 6306
+            route-distinguisher 6306:10098
+            auto-bind mpls
+            vrf-target target:6306:10098
+            interface "PED77COL04_LAG11-HP_BUNDLE2-SERV" create
+                address 10.53.179.45/30
+                bfd 300 receive 300 multiplier 3
+                sap lag-11:521 create
+                exit
+            exit
+            ospf
+                vpn-tag 6306
+                export "Export-Default"
+                ignore-dn-bit
+                area 0.0.0.73
+                    interface "PED77COL04_LAG11-HP_BUNDLE2-SERV"
+                        interface-type point-to-point
+                        bfd-enable 
+                        no shutdown
+                    exit
+                exit
+            exit
+            service-name "LTE-SGI-Servicios"
+            no shutdown
+
+policy-statement "Import_LTE-SGI-Serv_GPRS-GI_Int"
+                entry 10
+                    from
+                        community "LTE-SGI-Servicios"
+                    exit
+                    action accept
+                    exit
+                exit
+                entry 20
+                    from
+                        community "GPRS-GI-INTERNA"
+                    exit
+                    action accept
+                    exit
+                exit
+            exit
+
+
+vprn 70100 customer 1 create
+            route-distinguisher 6306:70100
+            vrf-target target:6306:70100
+            interface "PED77COL04_LAG11-HP_BUNDLE2-SGI" create
+                address 10.53.179.13/30
+                bfd 300 receive 300 multiplier 3
+                sap lag-11:513 create
+                exit
+            exit
+            ospf
+                vpn-tag 6306
+                area 0.0.0.76
+                    interface "PED77COL04_LAG11-HP_BUNDLE2-SGI"
+                        interface-type point-to-point
+                        bfd-enable 
+                        no shutdown
+                    exit
+                exit
+            exit
+            service-name "LTE-SGI-Test"
+            no shutdown
+        exit
+
+
+______________________________________________________________________________________________
+
+configure  service
+vprn 10084 customer 1 
+interface "PED77COL04_LAG11-HP_BUNDLE2-NAV"
+shutdown
+sap lag-11:517
+shutdown
+exit
+no sap lag-11:517
+exit
+no interface "PED77COL04_LAG11-HP_BUNDLE2-NAV"
+
+configure  service 
+vprn 10098 customer 1
+interface "PED77COL04_LAG11-HP_BUNDLE2-SERV"
+shutdown
+sap lag-11:521
+shutdown
+exit
+no sap lag-11:521
+exit
+no interface "PED77COL04_LAG11-HP_BUNDLE2-SERV"
+
+
+configure  service 
+vprn 70100 customer 1
+interface "PED77COL04_LAG11-HP_BUNDLE2-SGI"
+shutdown
+sap lag-11:513
+shutdown
+exit
+no sap lag-11:513
+exit
+no interface "PED77COL04_LAG11-HP_BUNDLE2-SGI"
+
+
+
+
+community "LTE-SGI-4G" members "target:6306:10200"
+community "LTE-SGI-Test" members "target:6306:70100"
+policy-statement "Import_LTE-SGI-4G"
+                entry 10
+                    from
+                        community "LTE-SGI"
+                    exit
+                    action accept
+                    exit
+                exit
+                entry 20
+                    from
+                        community "3G-BILLING"
+                    exit
+                    action accept
+                    exit
+                exit 
+                entry 30
+                    from
+                        community "LTE-SGI-Servicios"
+                    exit
+                    action accept
+                    exit
+                exit
+                entry 40
+                    from
+                        community "GPRS-GI-INTERNA"
+                    exit
+                    action accept
+                    exit
+                exit   
+                entry 50
+                    from
+                        community "LTE-SGI-Test"
+                    exit
+                    action accept
+                    exit
+                exit  
+                entry 60
+                    from
+                        community "LTE-SGI-4G"
+                    exit
+                    action accept
+                    exit
+                exit                 
+            exit
+
+
+
+
+
+
+vprn 10200 customer 1 create
+description "LTE_SGI"
+            vrf-import "Import_LTE-SGI-4G"
+            router-id 10.19.11.114
+            autonomous-system 6306
+            route-distinguisher 6306:10200
+            auto-bind mpls
+            vrf-target target:6306:10200
+            interface "PED77COL04_LAG11-HP_BUNDLE2-NAV" create
+                address 10.53.179.29/30
+                bfd 300 receive 300 multiplier 3
+                sap lag-11:517 create
+                exit
+            exit
+            interface "PED77COL04_LAG11-HP_BUNDLE2-SERV" create
+                address 10.53.179.45/30
+                bfd 300 receive 300 multiplier 3
+                sap lag-11:521 create
+                exit
+            exit
+            interface "PED77COL04_LAG11-HP_BUNDLE2-SGI" create
+                address 10.53.179.13/30
+                bfd 300 receive 300 multiplier 3
+                sap lag-11:513 create
+                exit
+            exit
+            ospf
+                vpn-tag 6306
+                timers
+                    lsa-arrival 100
+                exit
+                export "Export-Default_LTE-SGI"
+                ignore-dn-bit
+                area 0.0.0.72
+                    interface "PED77COL04_LAG11-HP_BUNDLE2-NAV"
+                        interface-type point-to-point
+                        hello-interval 1
+                        dead-interval 4
+                        bfd-enable 
+                        no shutdown
+                    exit
+                exit
+                area 0.0.0.73
+                    interface "PED77COL04_LAG11-HP_BUNDLE2-SERV"
+                        interface-type point-to-point
+                        bfd-enable 
+                        no shutdown
+                    exit
+                exit
+                area 0.0.0.76
+                    interface "PED77COL04_LAG11-HP_BUNDLE2-SGI"
+                        interface-type point-to-point
+                        bfd-enable 
+                        no shutdown
+                    exit
+                exit
+                exit
+            service-name "SGI_4G"
+            no shutdown
+        exit
+     exit
+ exit
+

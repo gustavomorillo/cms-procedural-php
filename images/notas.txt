@@ -1,0 +1,1 @@
+en la vrf OAMTI del equipo PEP76CAN01 se importa el rt 6306:10042 pertene a GESTION-IDS
