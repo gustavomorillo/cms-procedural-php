@@ -42,7 +42,7 @@
                             $active = "active";
                         }
 
-                        echo "<li class='$active'><a href='/cms/category/$cat_id'>{$cat_title}</a></li>";
+                        echo "<li class='$active'><a href='/category/$cat_id'>{$cat_title}</a></li>";
                     }
 
 
@@ -51,7 +51,7 @@
 
                     <li>
                         
-                        <a href="/cms/admin/">admin</a>
+                        <a href="/admin/">admin</a>
                     </li>
                     <?php 
 
@@ -69,7 +69,7 @@
                     ?>
                     <li class='<?php echo $active2 ?>'>
                         
-                        <a href="/cms/registration">Registration</a>
+                        <a href="/registration">Registration</a>
                     </li>
                     <?php 
                     $pageName = basename($_SERVER['PHP_SELF']);
@@ -84,9 +84,9 @@
                     <?php
                     if (!isLoggedIn()){
 
-                        echo "<li class='$active2'><a href='/cms/login.php'>Login</a></li>";
+                        echo "<li class='$active2'><a href='/login.php'>Login</a></li>";
                     } else {
-                        echo "<li class='$active2'><a href='/cms/includes/logout.php'>Logout</a></li>";
+                        echo "<li class='$active2'><a href='/includes/logout.php'>Logout</a></li>";
                     }
                     ?>
 
@@ -104,7 +104,7 @@
         if (isset($_GET['p_id'])){
             $post_id = $_GET['p_id'];
 
-           echo "<li><a href='/cms/admin/posts.php?source=edit_post&p_id={$post_id}'>Edit post</a></li>";
+           echo "<li><a href='/admin/posts.php?source=edit_post&p_id={$post_id}'>Edit post</a></li>";
 
         }
 
