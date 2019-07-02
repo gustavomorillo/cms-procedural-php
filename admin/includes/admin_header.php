@@ -20,7 +20,7 @@
     <!-- Bootstrap Core CSS -->
     
 
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  
 
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 
@@ -29,6 +29,9 @@
   <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
 
     <!-- Custom CSS -->
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
     <link href="/css/sb-admin.css" rel="stylesheet">
 
     <link href="/css/loader.css" rel="stylesheet">
